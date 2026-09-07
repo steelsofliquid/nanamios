@@ -6,7 +6,7 @@ This new operating system project is a very much work in progress, please check 
 ## Tools needed for compilation
 This information is preliminary, but you when code get written you will need self-compiled versions of these packages:
  - GCC i686-elf cross-compiler for C and C++, version 16.2.0
- - binutils 2.46 (iirc)
+ - binutils 2.47
 
 ## Questions and Answers
 **Why name an OS project "Nanami/OS"?**
