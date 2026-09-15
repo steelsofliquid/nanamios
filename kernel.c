@@ -81,11 +81,21 @@ void TerminalPutEntryAt(char c, uint8_t colour, size_t x, size_t y)
 
 void TerminalPutChar(char c)
 {
-	TerminalPutEntryAt(c, terminalColour, terminalColumn, terminalRow);
-	if (++terminalColumn == VGA_WIDTH)
+	// check for special conditions, i.e. backspace newline etc.
+	if (c == '\n')
 	{
 		terminalColumn = 0;
-		if (++terminalRow == VGA_HEIGHT) terminalRow = 0;
+		terminalRow++;
+	}	
+	else
+	{
+		TerminalPutEntryAt(c, terminalColour, terminalColumn, terminalRow); // now we place a char
+
+		if (++terminalColumn == VGA_WIDTH)
+		{
+			terminalColumn = 0;
+			if (++terminalRow == VGA_HEIGHT) terminalRow = 0;
+		}
 	}
 }
 
@@ -103,6 +113,8 @@ void kernel_main(void)
 {
 	TerminalInitialise();
 
-	TerminalWriteStr("Nanami/OS build 1!!!\nHello world!\n");
+	TerminalWriteStr("Nanami/OS build 8!!!\n");
+	TerminalColourSet(15);
+	TerminalWriteStr("\n\nHello world!\n");
 }
 
